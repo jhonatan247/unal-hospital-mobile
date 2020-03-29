@@ -8,13 +8,13 @@ class TextArea extends StatelessWidget {
   final Function validator;
   final Function onSaved;
 
-  TextArea({
+  TextArea(
     this.label,
     this.hint,
     this.lines,
     this.validator,
     this.onSaved,
-  });
+  );
 
   @override
   Widget build(BuildContext context) {

@@ -77,4 +77,25 @@ class JhontanMariaTheme {
       prefixIcon: Icon(iconId),
     );
   }
+
+  static InputDecoration getTextFieldDecoration(String hint, IconData iconId) {
+    return InputDecoration(
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.0),
+        borderSide: BorderSide(
+          color: jonthanMariaTheme.colorScheme.primaryVariant,
+          width: 2,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.0),
+        borderSide: BorderSide(
+          color: jonthanMariaTheme.colorScheme.secondary,
+          width: 2,
+        ),
+      ),
+      hintText: hint,
+      prefixIcon: Icon(iconId),
+    );
+  }
 }
