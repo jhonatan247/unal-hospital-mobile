@@ -19,9 +19,24 @@ class GenericRaisedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> buttonContent = [];
-    if (backArrow == true) buttonContent.add(Icon(Icons.keyboard_arrow_left));
-    buttonContent.add(Text(content));
-    if (nextArrow == true) buttonContent.add(Icon(Icons.keyboard_arrow_right));
+    final arrowColor = JhontanMariaTheme.getGenericRaisedButtonTextColor(solid, onPressed);
+    if (backArrow == true)
+      buttonContent.add(Icon(
+        Icons.keyboard_arrow_left,
+        color: arrowColor,
+      ));
+    buttonContent.add(RichText(
+      text: TextSpan(
+        text: content,
+        style:
+            JhontanMariaTheme.getGenericRaisedButtonTextStyle(solid, onPressed),
+      ),
+    ));
+    if (nextArrow == true)
+      buttonContent.add(Icon(
+        Icons.keyboard_arrow_right,
+        color: arrowColor,
+      ));
 
     return RaisedButton(
       onPressed: onPressed,

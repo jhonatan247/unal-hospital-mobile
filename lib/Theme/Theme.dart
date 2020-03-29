@@ -98,4 +98,21 @@ class JhontanMariaTheme {
       prefixIcon: Icon(iconId),
     );
   }
+
+  static Color getGenericRaisedButtonTextColor(bool solid , Function onPressed){
+    var color;
+    if (onPressed != null) {
+      color = solid == true ? DeepBlueColorScheme.white : DeepBlueColorScheme.primary;
+    } else {
+      color = DeepBlueColorScheme.white;
+    }
+    return color;
+  }
+
+  static TextStyle getGenericRaisedButtonTextStyle(bool solid , Function onPressed) {
+    return TextStyle(
+      color: getGenericRaisedButtonTextColor(solid, onPressed),
+      fontSize: 22,
+    );
+  }
 }
