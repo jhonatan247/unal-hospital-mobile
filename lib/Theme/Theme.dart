@@ -57,7 +57,8 @@ class JhontanMariaTheme {
     );
   }
 
-  static InputDecoration getMaterialIconTextFieldDecoration(String hint, IconData iconId) {
+  static InputDecoration getMaterialIconTextFieldDecoration(
+      String hint, IconData iconId) {
     return InputDecoration(
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
@@ -74,7 +75,10 @@ class JhontanMariaTheme {
         ),
       ),
       hintText: hint,
-      prefixIcon: Icon(iconId),
+      prefixIcon: Icon(
+        iconId,
+        color: jonthanMariaTheme.colorScheme.secondary,
+      ),
     );
   }
 
@@ -99,17 +103,20 @@ class JhontanMariaTheme {
     );
   }
 
-  static Color getGenericRaisedButtonTextColor(bool solid , Function onPressed){
+  static Color getGenericRaisedButtonTextColor(bool solid, Function onPressed) {
     var color;
     if (onPressed != null) {
-      color = solid == true ? DeepBlueColorScheme.white : DeepBlueColorScheme.primary;
+      color = solid == true
+          ? DeepBlueColorScheme.white
+          : DeepBlueColorScheme.primary;
     } else {
       color = DeepBlueColorScheme.white;
     }
     return color;
   }
 
-  static TextStyle getGenericRaisedButtonTextStyle(bool solid , Function onPressed) {
+  static TextStyle getGenericRaisedButtonTextStyle(
+      bool solid, Function onPressed) {
     return TextStyle(
       color: getGenericRaisedButtonTextColor(solid, onPressed),
       fontSize: 22,
