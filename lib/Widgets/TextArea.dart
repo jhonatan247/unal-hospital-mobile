@@ -8,16 +8,26 @@ class TextArea extends StatelessWidget {
 
   TextArea({this.label, this.hint, this.lines});
 
-  InputDecoration buildDecorator( String hint, BuildContext context ) {
-    return JhontanMariaTheme.getTextAreaDecoration(hint);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      maxLines: lines,
-      decoration: JhontanMariaTheme.getTextAreaDecoration(hint),
-      style: TextStyle(),
+    return Column(
+      children: <Widget>[
+        Container(
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text(label, style: Theme.of(context).textTheme.display1),
+          ),
+          margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+        ),
+        Container(
+          child: TextField(
+            maxLines: lines,
+            decoration: JhontanMariaTheme.getTextAreaDecoration(hint),
+            style: Theme.of(context).textTheme.display1,
+          ),
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
+        ),
+      ],
     );
   }
 }
