@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:me_cuido/Theme/Theme.dart';
 
-class Picker extends StatelessWidget {
+class EnchancedText extends StatelessWidget {
   final String hint;
   final String label;
+  final int maxLines;
+  final IconData iconId;
   final Function validator;
   final Function onSaved;
 
-  Picker(
+  EnchancedText(
     this.label,
-    this.hint,
-    this.validator,
+    this.hint, {
+    this.iconId,
     this.onSaved,
-  );
+    this.validator,
+    this.maxLines = 1,
+  });
 
   @override
   Widget build(BuildContext context) {
+    var decoration = JhontanMariaTheme.getTextAreaDecoration(hint);
+
+    if (iconId != null) {
+      decoration =
+          JhontanMariaTheme.getMaterialIconTextFieldDecoration(hint, iconId);
+    }
+
     return Column(
       children: <Widget>[
         Container(
@@ -27,16 +37,12 @@ class Picker extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
         ),
         Container(
-          width: 75,
           child: TextFormField(
-            inputFormatters: <TextInputFormatter>[
-              WhitelistingTextInputFormatter.digitsOnly
-            ],
-            keyboardType: TextInputType.number,
+            decoration: decoration,
+            maxLines: maxLines,
             onSaved: onSaved,
             style: Theme.of(context).textTheme.display1,
             validator: validator,
-            decoration: JhontanMariaTheme.getTextAreaDecoration(hint),
           ),
           margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
         ),
