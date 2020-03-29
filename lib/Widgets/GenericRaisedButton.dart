@@ -4,49 +4,51 @@ import 'package:me_cuido/Theme/Theme.dart';
 class GenericRaisedButton extends StatelessWidget {
   final Function onPressed;
   final bool solid;
-  final bool nextArrow;
-  final bool backArrow;
+  final bool enabled;
+  final IconData sufixIcon;
+  final IconData prefixIcon;
   final String content;
 
   GenericRaisedButton(
-    this.content, {
-    this.nextArrow,
-    this.backArrow,
-    this.onPressed,
+    this.content, 
+    this.onPressed, {
+    this.enabled = true,
+    this.sufixIcon,
+    this.prefixIcon,
     this.solid = false,
   });
 
   @override
   Widget build(BuildContext context) {
     List<Widget> buttonContent = [];
-    final arrowColor = JhontanMariaTheme.getGenericRaisedButtonTextColor(solid, onPressed);
-    if (backArrow == true)
+    final iconColor = JhontanMariaTheme.getGenericRaisedButtonTextColor(solid, enabled);
+    if (prefixIcon != null)
       buttonContent.add(Icon(
-        Icons.keyboard_arrow_left,
-        color: arrowColor,
+        prefixIcon,
+        color: iconColor,
       ));
     buttonContent.add(RichText(
       text: TextSpan(
         text: content,
         style:
-            JhontanMariaTheme.getGenericRaisedButtonTextStyle(solid, onPressed),
+            JhontanMariaTheme.getGenericRaisedButtonTextStyle(solid, enabled),
       ),
     ));
-    if (nextArrow == true)
+    if (sufixIcon != null)
       buttonContent.add(Icon(
-        Icons.keyboard_arrow_right,
-        color: arrowColor,
+        sufixIcon,
+        color: iconColor,
       ));
 
     return RaisedButton(
-      onPressed: onPressed,
+      onPressed: enabled ? onPressed : null,
       color: solid
           ? Theme.of(context).colorScheme.primary
           : Theme.of(context).colorScheme.background,
       disabledColor: Theme.of(context).colorScheme.primaryVariant,
       child: Row(
         children: buttonContent,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
       ),
     );
   }

@@ -103,9 +103,9 @@ class JhontanMariaTheme {
     );
   }
 
-  static Color getGenericRaisedButtonTextColor(bool solid, Function onPressed) {
+  static Color getGenericRaisedButtonTextColor(bool solid, bool enabled) {
     var color;
-    if (onPressed != null) {
+    if (enabled) {
       color = solid == true
           ? DeepBlueColorScheme.white
           : DeepBlueColorScheme.primary;
@@ -116,9 +116,9 @@ class JhontanMariaTheme {
   }
 
   static TextStyle getGenericRaisedButtonTextStyle(
-      bool solid, Function onPressed) {
+      bool solid, bool enabled) {
     return TextStyle(
-      color: getGenericRaisedButtonTextColor(solid, onPressed),
+      color: getGenericRaisedButtonTextColor(solid, enabled),
       fontSize: 22,
     );
   }
