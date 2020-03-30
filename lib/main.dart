@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Me cuido',
       theme: JhontanMariaTheme.jonthanMariaTheme,
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: '👌 Me cuido'),
     );
   }
 }
@@ -25,23 +25,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Theme.of(context).backgroundColor,
+        textTheme: TextTheme(
+            title: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 18,
+                fontWeight: FontWeight.bold)),
+        actions: <Widget>[
+          FlatButton(
+              child: Row(
+                children: <Widget>[
+                  Text("Jhonatan"),
+                  Icon(Icons.person),
+                ],
+              ),
+              textColor: Theme.of(context).primaryColorDark,
+              onPressed: () {
+                print("user icon was clicked");
+              })
+        ],
       ),
-      body: Center(
-        child: PlayGround()
-      ),
+      body: Center(child: PlayGround()),
     );
   }
 }
