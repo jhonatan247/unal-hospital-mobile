@@ -11,10 +11,12 @@ class JhontanMariaTheme {
     primaryColorDark: DeepBlueColorScheme.secondary,
     primaryColorLight: DeepBlueColorScheme.secondary,
     cardTheme: CardTheme(color: DeepBlueColorScheme.secondary),
-    textTheme:
-        TextTheme(display1: TextStyle(color: DeepBlueColorScheme.secondary)),
-    primaryTextTheme:
-        TextTheme(display1: TextStyle(color: DeepBlueColorScheme.secondary)),
+    textTheme: TextTheme(
+      display1: TextStyle(
+        color: DeepBlueColorScheme.secondary,
+        fontSize: 22,
+      ),
+    ),
     iconTheme: IconThemeData(color: DeepBlueColorScheme.secondary),
     bottomAppBarColor: DeepBlueColorScheme.white,
     dividerColor: DeepBlueColorScheme.secondary,
@@ -37,16 +39,86 @@ class JhontanMariaTheme {
   // TextStyles
   static InputDecoration getTextAreaDecoration(String hint) {
     return InputDecoration(
-      hintText: hint,
-      border: OutlineInputBorder(
+      enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
-        borderSide:
-            BorderSide(color: jonthanMariaTheme.colorScheme.primaryVariant),
+        borderSide: BorderSide(
+          color: jonthanMariaTheme.colorScheme.primaryVariant,
+          width: 2,
+        ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
-        borderSide: BorderSide(color: jonthanMariaTheme.colorScheme.secondary),
+        borderSide: BorderSide(
+          color: jonthanMariaTheme.colorScheme.secondary,
+          width: 2,
+        ),
       ),
+      hintText: hint,
+    );
+  }
+
+  static InputDecoration getMaterialIconTextFieldDecoration(
+      String hint, IconData iconId) {
+    return InputDecoration(
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.0),
+        borderSide: BorderSide(
+          color: jonthanMariaTheme.colorScheme.primaryVariant,
+          width: 2,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.0),
+        borderSide: BorderSide(
+          color: jonthanMariaTheme.colorScheme.secondary,
+          width: 2,
+        ),
+      ),
+      hintText: hint,
+      prefixIcon: Icon(
+        iconId,
+        color: jonthanMariaTheme.colorScheme.secondary,
+      ),
+    );
+  }
+
+  static InputDecoration getTextFieldDecoration(String hint, IconData iconId) {
+    return InputDecoration(
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.0),
+        borderSide: BorderSide(
+          color: jonthanMariaTheme.colorScheme.primaryVariant,
+          width: 2,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.0),
+        borderSide: BorderSide(
+          color: jonthanMariaTheme.colorScheme.secondary,
+          width: 2,
+        ),
+      ),
+      hintText: hint,
+      prefixIcon: Icon(iconId),
+    );
+  }
+
+  static Color getGenericRaisedButtonTextColor(bool solid, bool enabled) {
+    var color;
+    if (enabled) {
+      color = solid == true
+          ? DeepBlueColorScheme.white
+          : DeepBlueColorScheme.primary;
+    } else {
+      color = DeepBlueColorScheme.white;
+    }
+    return color;
+  }
+
+  static TextStyle getGenericRaisedButtonTextStyle(bool solid, bool enabled) {
+    return TextStyle(
+      color: getGenericRaisedButtonTextColor(solid, enabled),
+      fontSize: 22,
     );
   }
 }
