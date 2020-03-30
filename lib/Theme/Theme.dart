@@ -13,6 +13,8 @@ class JhontanMariaTheme {
     cardTheme: CardTheme(color: DeepBlueColorScheme.secondary),
     textTheme:
         TextTheme(display1: TextStyle(color: DeepBlueColorScheme.secondary)),
+    primaryTextTheme:
+        TextTheme(display1: TextStyle(color: DeepBlueColorScheme.secondary)),
     iconTheme: IconThemeData(color: DeepBlueColorScheme.secondary),
     bottomAppBarColor: DeepBlueColorScheme.white,
     dividerColor: DeepBlueColorScheme.secondary,
@@ -46,5 +48,5 @@ class JhontanMariaTheme {
         borderSide: BorderSide(color: jonthanMariaTheme.colorScheme.secondary),
       ),
     );
-  } 
+  }
 }
