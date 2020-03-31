@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:me_cuido/Models/experiment.dart';
+import './GenericRaisedButton.dart';
 
 class NavigationWidget extends StatefulWidget {
   final List<Experiment> experiments;
@@ -33,6 +34,28 @@ class _NavigationWidgetState extends State<NavigationWidget> {
 
   int currentExperimentIndex = 0;
 
+  void onPreviousTab() {
+    if (currentExperimentIndex == 0) {
+      onCancel();
+    } else {
+      setState(() {
+        currentExperimentIndex--;
+        onPrevious(experiments.elementAt(currentExperimentIndex));
+      });
+    }
+  }
+
+  void onNextTab() {
+    if (currentExperimentIndex + 1 == experiments.length) {
+      onFinish();
+    } else {
+      setState(() {
+        currentExperimentIndex++;
+        onNext(experiments.elementAt(currentExperimentIndex));
+      });
+    }
+  }
+
   _NavigationWidgetState(
       {this.experiments,
       this.onFinish,
@@ -45,42 +68,24 @@ class _NavigationWidgetState extends State<NavigationWidget> {
     String backButtonText = currentExperimentIndex == 0 ? "Cancel" : "Previous";
     String nextButtonText =
         currentExperimentIndex + 1 == experiments.length ? "Finish" : "next";
-    return Row(
-      children: <Widget>[
-        FlatButton(
-          onPressed: () {
-            if (currentExperimentIndex == 0) {
-              onCancel();
-            } else {
-              setState(() {
-                currentExperimentIndex--;
-                onPrevious(experiments.elementAt(currentExperimentIndex));
-              });
-            }
-          },
-          child: Row(
-            children: <Widget>[Icon(Icons.arrow_back), Text(backButtonText)],
+    return Container(
+      padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+      child: Row(
+        children: <Widget>[
+          GenericRaisedButton(
+            backButtonText,
+            onPreviousTab,
+            prefixIcon: Icons.keyboard_arrow_left,
           ),
-          color: Theme.of(context).backgroundColor,
-        ),
-        FlatButton(
-          onPressed: () {
-            if (currentExperimentIndex + 1 == experiments.length) {
-              onFinish();
-            } else {
-              setState(() {
-                currentExperimentIndex++;
-                onNext(experiments.elementAt(currentExperimentIndex));
-              });
-            }
-          },
-          child: Row(
-            children: <Widget>[Text(nextButtonText), Icon(Icons.arrow_forward)],
+          GenericRaisedButton(
+            nextButtonText,
+            onNextTab,
+            sufixIcon: Icons.keyboard_arrow_right,
+            solid: true,
           ),
-          color: Theme.of(context).primaryColor,
-        ),
-      ],
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      ),
     );
   }
 }
