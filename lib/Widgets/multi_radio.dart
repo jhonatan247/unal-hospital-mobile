@@ -31,9 +31,6 @@ class _MultiRadioWidgetState extends State<MultiRadioWidget> {
         return Container(
           child: Row(
             children: <Widget>[
-              SizedBox(
-                width: 30,
-              ),
               Radio<SelectorOption>(
                 activeColor: Color(0XFF113D52),
                 value: options.elementAt(index),
