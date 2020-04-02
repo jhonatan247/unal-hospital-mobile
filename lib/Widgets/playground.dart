@@ -14,30 +14,90 @@ class PlayGround extends StatelessWidget {
               'Por favor, indícanos si sientes que presentas uno o más síntomas de la enfermedad COVID-19.'
         },
         options: [
-          {'text': 'text'}
+          {
+            'label': {
+              'type': 'text',
+              'content': 'Si',
+            },
+          },
+          {
+            'type': 'radial-box',
+            'label': {
+              'type': 'text',
+              'content': 'No',
+            },
+          },
+          {
+            'type': 'radial-box',
+            'label': {
+              'type': 'text',
+              'content': 'Tal vez',
+            },
+          },
         ],
+        type: ExperimentInputTypes.RadialBox,
       ),
       Experiment(
         title: '¿Cómo te sentirás mañana?',
         label: {
           'type': 'text',
-          'content':
-              'Test'
+          'content': 'Test',
         },
         options: [
-          {'text': 'text'}
+          {
+            'type': 'radial-box',
+            'label': {
+              'type': 'text',
+              'content': 'a',
+            },
+          },
+          {
+            'type': 'radial-box',
+            'label': {
+              'type': 'text',
+              'content': 'b',
+            },
+          },
+          {
+            'type': 'radial-box',
+            'label': {
+              'type': 'text',
+              'content': 'c',
+            },
+          },
         ],
+        type: ExperimentInputTypes.Checkbox
       ),
       Experiment(
         title: '¿Cómo te sentirás pasadomañana?',
         label: {
           'type': 'text',
-          'content':
-              'Test 2'
+          'content': 'Test 2',
         },
         options: [
-          {'text': 'text'}
+          {
+            'type': 'radial-box',
+            'label': {
+              'type': 'text',
+              'content': '1',
+            },
+          },
+          {
+            'type': 'radial-box',
+            'label': {
+              'type': 'text',
+              'content': '2',
+            },
+          },
+          {
+            'type': 'radial-box',
+            'label': {
+              'type': 'text',
+              'content': '3',
+            },
+          },
         ],
+        type: ExperimentInputTypes.Text,
       ),
     ];
 

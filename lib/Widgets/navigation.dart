@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:me_cuido/Models/experiment.dart';
 import './generic_raised_button.dart';
 
 class NavigationWidget extends StatelessWidget {
@@ -15,7 +14,7 @@ class NavigationWidget extends StatelessWidget {
 
   void onPreviousTab() {
     if (currentIndex == 0) {
-      // Should'n be shown
+      onChange(currentIndex);
     } else {
       onChange(currentIndex - 1);
     }
@@ -23,9 +22,10 @@ class NavigationWidget extends StatelessWidget {
 
   void onNextTab() {
     if (currentIndex + 1 == count) {
-      // Shouldn't be shown
+      onChange(currentIndex);
     } else {
-      onChange(currentIndex + 1);
+      final newIndex = currentIndex + 1;
+      onChange(newIndex);
     }
   }
 

@@ -5,41 +5,39 @@ class MultiRadioWidget extends StatefulWidget {
   final List<SelectorOption> options;
   final void Function(SelectorOption) onChanged;
 
-  MultiRadioWidget({this.options, this.onChanged});
+  MultiRadioWidget(this.options, this.onChanged);
 
   @override
-  _MultiRadioWidgetState createState() =>
-      _MultiRadioWidgetState(options: this.options, onChanged: this.onChanged);
+  _MultiRadioWidgetState createState() => _MultiRadioWidgetState();
 }
 
 class _MultiRadioWidgetState extends State<MultiRadioWidget> {
-  final List<SelectorOption> options;
-  final void Function(SelectorOption) onChanged;
   SelectorOption optionMarked;
 
-  _MultiRadioWidgetState({this.options, this.onChanged});
+  _MultiRadioWidgetState();
 
   @override
   Widget build(BuildContext context) {
-    if (options.length == 0) return Container();
+    //options.forEach((f)=> print(f.name));
+    if (widget.options.length == 0) return Container();
 
     return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: this.options.length,
+      itemCount: widget.options.length,
       itemBuilder: (BuildContext builderContext, int index) {
         return Container(
           child: Row(
             children: <Widget>[
               Radio<SelectorOption>(
                 activeColor: Color(0XFF113D52),
-                value: options.elementAt(index),
+                value: widget.options.elementAt(index),
                 groupValue: optionMarked,
                 onChanged: (SelectorOption value) {
                   setState(() {
                     optionMarked = value;
-                    onChanged(optionMarked);
                   });
+                  widget.onChanged(optionMarked);
                 },
               ),
               SizedBox(
@@ -47,10 +45,9 @@ class _MultiRadioWidgetState extends State<MultiRadioWidget> {
               ),
               Flexible(
                 child: Text(
-                  this.options.elementAt(index).name,
+                  widget.options.elementAt(index).name,
                   overflow: TextOverflow.visible,
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColorDark, fontSize: 18),
+                  style: Theme.of(context).textTheme.display1,
                 ),
               ),
               SizedBox(

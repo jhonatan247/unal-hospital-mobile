@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:me_cuido/Models/experiment.dart';
 import 'package:me_cuido/Models/selector_option.dart';
+import 'package:me_cuido/Widgets/multi_check.dart';
 import 'package:me_cuido/Widgets/multi_radio.dart';
 import 'package:me_cuido/Widgets/navigation.dart';
 
@@ -16,34 +17,87 @@ class Triage extends StatefulWidget {
   );
 
   @override
-  _TriageState createState() => _TriageState(
-        this.questions,
-        this.returnToHome,
-        this.finishTriage,
-      );
+  _TriageState createState() => _TriageState(this.questions);
 }
 
 class _TriageState extends State<Triage> {
   final List<Experiment> questions;
-  final Function returnToHome;
-  final Function finishTriage;
 
+  Widget currentOptions;
   int currentQuestion = 0;
 
-  final List<SelectorOption> options = [
-    SelectorOption(name: 'First'),
-    SelectorOption(name: 'Second option'),
-    SelectorOption(name: 'Third option'),
-    SelectorOption(name: 'Fourth option')
-  ];
+  _TriageState(this.questions) {
+    currentOptions = buildOptionsListFromExperimentData(
+        questions[currentQuestion].options, questions[currentQuestion].type);
+  }
 
   void onQuestionChange(int questionIndex) {
+    Widget newOptions = buildOptionsListFromExperimentData(
+        questions[questionIndex].options, questions[questionIndex].type);
+
     setState(() {
       currentQuestion = questionIndex;
+      currentOptions = newOptions;
     });
   }
 
-  _TriageState(this.questions, this.returnToHome, this.finishTriage);
+  Widget buildOptionsListFromExperimentData(
+      List<Map<String, Object>> experimentData,
+      ExperimentInputTypes questionType) {
+    switch (questionType) {
+      case ExperimentInputTypes.RadialBox: // Multiple options, single answer.
+        print("RadialBox");
+        return buildRadialBoxOptionListFromJsonData(experimentData);
+        break;
+      case ExperimentInputTypes.Checkbox: // Multiple options, multiple answers.
+        print("Checkbox");
+        return buildCheckboxOptionListFromJsonData(experimentData);
+        break;
+      case ExperimentInputTypes.Text: // Input text.
+        print("Text");
+        break;
+      default:
+      // error en la generación de la pregunta? cómo manejaríamos errores acá?
+    }
+  }
+
+  MultiRadioWidget buildRadialBoxOptionListFromJsonData(
+      List<Map<String, Object>> experimentData) {
+    List<SelectorOption> buildedOptions = [];
+
+    experimentData.forEach((opt) {
+      var option = SelectorOption(
+        name: (opt['label'] as Map<String, String>)['content'],
+      );
+      buildedOptions.add(option);
+    });
+
+    return MultiRadioWidget(
+      buildedOptions,
+      (SelectorOption option) {
+        print(option.name);
+      },
+    );
+  }
+
+  MultiCheckWidget buildCheckboxOptionListFromJsonData(
+      List<Map<String, Object>> experimentData) {
+    List<SelectorOption> buildedOptions = [];
+
+    experimentData.forEach((opt) {
+      var option = SelectorOption(
+        name: (opt['label'] as Map<String, String>)['content'],
+      );
+      buildedOptions.add(option);
+    });
+
+    return MultiCheckWidget(
+      buildedOptions,
+      (List<SelectorOption> options) {
+        options.forEach((opt) => print(opt.name));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +115,11 @@ class _TriageState extends State<Triage> {
               questions[currentQuestion].title,
               style: Theme.of(context).textTheme.display1,
             ),
-            MultiRadioWidget(
-              options: this.options,
-              onChanged: (SelectorOption option) {
-                print('OPTIONS MARKED');
-                print(option.name);
-              },
+            Text(
+              questions[currentQuestion].label['content'],
+              style: Theme.of(context).textTheme.display1,
             ),
+            currentOptions,
           ],
         ),
       ),
