@@ -15,6 +15,7 @@ class PlayGround extends StatelessWidget {
         },
         options: [
           {
+            'id': "aa",
             'label': {
               'type': 'text',
               'content': 'Si',
@@ -22,6 +23,7 @@ class PlayGround extends StatelessWidget {
           },
           {
             'type': 'radial-box',
+            'id': "bb",
             'label': {
               'type': 'text',
               'content': 'No',
@@ -29,6 +31,7 @@ class PlayGround extends StatelessWidget {
           },
           {
             'type': 'radial-box',
+            'id': "cc",
             'label': {
               'type': 'text',
               'content': 'Tal vez',
@@ -45,6 +48,7 @@ class PlayGround extends StatelessWidget {
         },
         options: [
           {
+            'id': 'aa',
             'type': 'radial-box',
             'label': {
               'type': 'text',
@@ -52,6 +56,7 @@ class PlayGround extends StatelessWidget {
             },
           },
           {
+            'id': 'ee',
             'type': 'radial-box',
             'label': {
               'type': 'text',
@@ -59,6 +64,7 @@ class PlayGround extends StatelessWidget {
             },
           },
           {
+            'id': 'ii',
             'type': 'radial-box',
             'label': {
               'type': 'text',
@@ -76,24 +82,11 @@ class PlayGround extends StatelessWidget {
         },
         options: [
           {
-            'type': 'radial-box',
+            'type': 'text',
+            'id': 'ee',
             'label': {
               'type': 'text',
-              'content': '1',
-            },
-          },
-          {
-            'type': 'radial-box',
-            'label': {
-              'type': 'text',
-              'content': '2',
-            },
-          },
-          {
-            'type': 'radial-box',
-            'label': {
-              'type': 'text',
-              'content': '3',
+              'content': 'This is the placeholder.',
             },
           },
         ],

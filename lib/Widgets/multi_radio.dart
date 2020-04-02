@@ -18,7 +18,6 @@ class _MultiRadioWidgetState extends State<MultiRadioWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //options.forEach((f)=> print(f.name));
     if (widget.options.length == 0) return Container();
 
     return ListView.builder(

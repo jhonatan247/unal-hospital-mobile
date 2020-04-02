@@ -67,7 +67,8 @@ class _TriageState extends State<Triage> {
 
     experimentData.forEach((opt) {
       var option = SelectorOption(
-        name: (opt['label'] as Map<String, String>)['content'],
+        opt['id'],
+        (opt['label'] as Map<String, String>)['content'],
       );
       buildedOptions.add(option);
     });
@@ -75,10 +76,14 @@ class _TriageState extends State<Triage> {
     return MultiRadioWidget(
       buildedOptions,
       (SelectorOption option) {
-        print(option.name);
+        var answer = getAnswersFromRadialBox(option);
+        print(answer);
       },
     );
   }
+
+  Map<String, bool> getAnswersFromRadialBox(SelectorOption answer) =>
+      {answer.id: true};
 
   MultiCheckWidget buildCheckboxOptionListFromJsonData(
       List<Map<String, Object>> experimentData) {
@@ -86,7 +91,8 @@ class _TriageState extends State<Triage> {
 
     experimentData.forEach((opt) {
       var option = SelectorOption(
-        name: (opt['label'] as Map<String, String>)['content'],
+        opt['id'],
+        (opt['label'] as Map<String, String>)['content'],
       );
       buildedOptions.add(option);
     });
@@ -94,9 +100,16 @@ class _TriageState extends State<Triage> {
     return MultiCheckWidget(
       buildedOptions,
       (List<SelectorOption> options) {
-        options.forEach((opt) => print(opt.name));
+        var answers = getAnswersFromCheckbox(options);
+        print(answers);
       },
     );
+  }
+
+  Map<String, bool> getAnswersFromCheckbox(List<SelectorOption> answersList) {
+    var formatedAnswers = Map<String, bool>();
+    answersList.forEach((answer) => formatedAnswers[answer.id] = true);
+    return formatedAnswers;
   }
 
   @override
