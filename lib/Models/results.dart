@@ -1,9 +1,9 @@
 class Results {
   String userId;
-  List<Map<String, Object>> options;
+  List<Map<String, Object>> answers;
 
   Results(
     this.userId,
-    this.options,
+    this.answers,
   );
 }

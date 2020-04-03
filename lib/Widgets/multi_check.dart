@@ -4,28 +4,41 @@ import 'package:me_cuido/Models/selector_option.dart';
 class MultiCheckWidget extends StatefulWidget {
   final List<SelectorOption> options;
   final void Function(List<SelectorOption>) onChanged;
+  final List<SelectorOption> optionsMarked;
 
-  MultiCheckWidget(this.options, this.onChanged);
+  MultiCheckWidget(
+    this.options,
+    this.onChanged, {
+    this.optionsMarked,
+  });
 
   @override
   _MultipleCheckWidgetState createState() => _MultipleCheckWidgetState(options);
 }
 
 class _MultipleCheckWidgetState extends State<MultiCheckWidget> {
-  final List<SelectorOption> optionsMarked = List();
-  List<bool> _valuesList;
+  final List<SelectorOption> options;
 
-  _MultipleCheckWidgetState(List<SelectorOption> options) {
-    _valuesList = List();
-    for (int i = 0; i < options.length; i++) {
-      _valuesList.add(false);
-    }
-  }
+  _MultipleCheckWidgetState(this.options);
 
   Widget buildCheckBox(int index) {
+    
+
+    if (widget.optionsMarked != null) {
+      for (final opt in widget.optionsMarked) {
+        print("opt.id");
+        print(opt.id);
+        print("opt.id");
+        if (widget.options[index].id == opt.id) {
+          widget.options[index] = opt;
+        }
+        break;
+      }
+    }
+
     return Checkbox(
       activeColor: Color(0XFF113D52),
-      value: _valuesList.elementAt(index),
+      value: widget.options[index].isSelected,
       onChanged: (bool selectedStatus) {
         changeItemSelectedStatus(index, selectedStatus);
       },
@@ -34,20 +47,12 @@ class _MultipleCheckWidgetState extends State<MultiCheckWidget> {
 
   void changeItemSelectedStatus(int index, bool selectedStatus) {
     setState(() {
-      _valuesList[index] = selectedStatus;
+      options[index].isSelected = selectedStatus;
+      List<SelectorOption> optionsMarked = [];
 
-      SelectorOption previousSelected;
-      for (SelectorOption option in optionsMarked) {
-        if (option.name == widget.options.elementAt(index).name) {
-          previousSelected = option;
-          break;
-        }
-      }
-      if (selectedStatus && previousSelected == null) {
-        optionsMarked.add(widget.options.elementAt(index));
-      } else if (!selectedStatus && previousSelected != null) {
-        optionsMarked.remove(previousSelected);
-      }
+      options.forEach((opt) => {
+            if (opt.isSelected) {optionsMarked.add(opt)}
+          });
       widget.onChanged(optionsMarked);
     });
   }

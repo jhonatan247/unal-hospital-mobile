@@ -5,12 +5,14 @@ class NavigationWidget extends StatelessWidget {
   final int count;
   final int currentIndex;
   final void Function(int experimentIndex) onChange;
+  final bool canContinue;
 
   NavigationWidget(
     this.count,
     this.currentIndex,
-    this.onChange,
-  );
+    this.onChange, {
+    this.canContinue = false,
+  });
 
   void onPreviousTab() {
     if (currentIndex == 0) {
@@ -24,16 +26,13 @@ class NavigationWidget extends StatelessWidget {
     if (currentIndex + 1 == count) {
       onChange(currentIndex);
     } else {
-      final newIndex = currentIndex + 1;
-      onChange(newIndex);
+      onChange(currentIndex + 1);
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    String backButtonText =
-        currentIndex == 0 ? "Cancelar" : "Anterior";
+    String backButtonText = currentIndex == 0 ? "Cancelar" : "Anterior";
     String nextButtonText =
         currentIndex + 1 == count ? "Finalizar" : "Siguiente";
     return Container(
@@ -47,7 +46,7 @@ class NavigationWidget extends StatelessWidget {
           ),
           GenericRaisedButton(
             nextButtonText,
-            onNextTab,
+            canContinue ? onNextTab : null,
             sufixIcon: Icons.keyboard_arrow_right,
             solid: true,
           ),
