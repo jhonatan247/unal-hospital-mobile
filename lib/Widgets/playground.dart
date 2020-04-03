@@ -7,6 +7,7 @@ class PlayGround extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Experiment> questions = [
       Experiment(
+        id: "q_ID_1",
         title: '¿Cómo te sientes hoy?',
         label: {
           'type': 'text',
@@ -41,6 +42,7 @@ class PlayGround extends StatelessWidget {
         type: ExperimentInputTypes.RadialBox,
       ),
       Experiment(
+        id: "q_ID_2",
         title: '¿Cómo te sentirás mañana?',
         label: {
           'type': 'text',
@@ -75,6 +77,7 @@ class PlayGround extends StatelessWidget {
         type: ExperimentInputTypes.Checkbox
       ),
       Experiment(
+        id: "q_ID_3",
         title: '¿Cómo te sentirás pasadomañana?',
         label: {
           'type': 'text',

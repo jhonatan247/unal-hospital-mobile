@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:me_cuido/Models/experiment.dart';
+import 'package:me_cuido/Models/results.dart';
 import 'package:me_cuido/Models/selector_option.dart';
 import 'package:me_cuido/Widgets/multi_check.dart';
 import 'package:me_cuido/Widgets/multi_radio.dart';
@@ -24,11 +25,23 @@ class _TriageState extends State<Triage> {
   final List<Experiment> questions;
 
   Widget currentOptions;
+  Results answers = Results("user_id", []);
   int currentQuestion = 0;
 
   _TriageState(this.questions) {
     currentOptions = buildOptionsListFromExperimentData(
         questions[currentQuestion].options, questions[currentQuestion].type);
+    initAnswerObject(questions);
+    print(answers.options);
+  }
+
+  void initAnswerObject(List<Experiment> questions) {
+    questions.forEach((question) {
+      answers.options.add({
+        'id': question.id,
+        'options': [],
+      });
+    });
   }
 
   void onQuestionChange(int questionIndex) {
@@ -76,14 +89,14 @@ class _TriageState extends State<Triage> {
     return MultiRadioWidget(
       buildedOptions,
       (SelectorOption option) {
-        var answer = getAnswersFromRadialBox(option);
-        print(answer);
+        List<Map<String, String>> optionsList = [getAnswersFromRadialBox(option)];
+        answers.options[currentQuestion]["options"] = optionsList;
       },
     );
   }
 
-  Map<String, bool> getAnswersFromRadialBox(SelectorOption answer) =>
-      {answer.id: true};
+  Map<String, String> getAnswersFromRadialBox(SelectorOption answer) =>
+      {answer.id: 'true'};
 
   MultiCheckWidget buildCheckboxOptionListFromJsonData(
       List<Map<String, Object>> experimentData) {
@@ -100,15 +113,16 @@ class _TriageState extends State<Triage> {
     return MultiCheckWidget(
       buildedOptions,
       (List<SelectorOption> options) {
-        var answers = getAnswersFromCheckbox(options);
-        print(answers);
+        List<Map<String, String>> optionsList = [getAnswersFromCheckbox(options)];
+        answers.options[currentQuestion]["options"] = optionsList;
+        print(answers.options[currentQuestion]['options']);
       },
     );
   }
 
-  Map<String, bool> getAnswersFromCheckbox(List<SelectorOption> answersList) {
-    var formatedAnswers = Map<String, bool>();
-    answersList.forEach((answer) => formatedAnswers[answer.id] = true);
+  Map<String, String> getAnswersFromCheckbox(List<SelectorOption> answersList) {
+    var formatedAnswers = Map<String, String>();
+    answersList.forEach((answer) => formatedAnswers[answer.id] = 'true');
     return formatedAnswers;
   }
 
