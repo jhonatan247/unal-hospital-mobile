@@ -3,7 +3,8 @@ import './color/colorScheme.dart';
 
 class JhontanMariaTheme {
   const JhontanMariaTheme();
-  static ThemeData jonthanMariaTheme = ThemeData(
+  static ThemeData jhontanMariaTheme = ThemeData(
+    fontFamily: 'NunitoSans',
     primarySwatch: DeepBlueColorScheme.primarySwatch,
     backgroundColor: DeepBlueColorScheme.white,
     primaryColor: DeepBlueColorScheme.primary,
@@ -42,14 +43,14 @@ class JhontanMariaTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
         borderSide: BorderSide(
-          color: jonthanMariaTheme.colorScheme.primaryVariant,
+          color: jhontanMariaTheme.colorScheme.primaryVariant,
           width: 2,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
         borderSide: BorderSide(
-          color: jonthanMariaTheme.colorScheme.secondary,
+          color: jhontanMariaTheme.colorScheme.secondary,
           width: 2,
         ),
       ),
@@ -63,21 +64,21 @@ class JhontanMariaTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
         borderSide: BorderSide(
-          color: jonthanMariaTheme.colorScheme.primaryVariant,
+          color: jhontanMariaTheme.colorScheme.primaryVariant,
           width: 2,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
         borderSide: BorderSide(
-          color: jonthanMariaTheme.colorScheme.secondary,
+          color: jhontanMariaTheme.colorScheme.secondary,
           width: 2,
         ),
       ),
       hintText: hint,
       prefixIcon: Icon(
         iconId,
-        color: jonthanMariaTheme.colorScheme.secondary,
+        color: jhontanMariaTheme.colorScheme.secondary,
       ),
     );
   }
@@ -87,14 +88,14 @@ class JhontanMariaTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
         borderSide: BorderSide(
-          color: jonthanMariaTheme.colorScheme.primaryVariant,
+          color: jhontanMariaTheme.colorScheme.primaryVariant,
           width: 2,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.0),
         borderSide: BorderSide(
-          color: jonthanMariaTheme.colorScheme.secondary,
+          color: jhontanMariaTheme.colorScheme.secondary,
           width: 2,
         ),
       ),
