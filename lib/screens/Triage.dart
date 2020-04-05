@@ -9,13 +9,7 @@ import 'package:me_cuido/Widgets/multi_radio.dart';
 import 'package:me_cuido/Widgets/navigation.dart';
 
 class Triage extends StatefulWidget {
-  final Function returnToHome;
-  final Function finishTriage;
-
-  Triage(
-    this.returnToHome,
-    this.finishTriage,
-  );
+  static String routeName = "triage";
 
   @override
   _TriageState createState() => _TriageState();

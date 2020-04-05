@@ -97,7 +97,6 @@ class PlayGround extends StatelessWidget {
       ),
     ];
 
-    return Triage(
-        () => print("returning home"), () => print("finished"));
+    return Triage();
   }
 }

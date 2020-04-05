@@ -4,7 +4,19 @@ import './color/colorScheme.dart';
 class JhontanMariaTheme {
   const JhontanMariaTheme();
   static ThemeData jhontanMariaTheme = ThemeData(
+    // Text themes
     fontFamily: 'NunitoSans',
+    textTheme: TextTheme(
+      title: TextStyle(
+        color: DeepBlueColorScheme.secondary,
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      display1: TextStyle(
+        color: DeepBlueColorScheme.secondary,
+        fontSize: 18,
+      ),
+    ),
     primarySwatch: DeepBlueColorScheme.primarySwatch,
     backgroundColor: DeepBlueColorScheme.white,
     primaryColor: DeepBlueColorScheme.primary,
@@ -12,13 +24,6 @@ class JhontanMariaTheme {
     primaryColorDark: DeepBlueColorScheme.secondary,
     primaryColorLight: DeepBlueColorScheme.secondary,
     cardTheme: CardTheme(color: DeepBlueColorScheme.secondary),
-    textTheme: TextTheme(
-      
-      display1: TextStyle(
-        color: DeepBlueColorScheme.secondary,
-        fontSize: 22,
-      ),
-    ),
     iconTheme: IconThemeData(color: DeepBlueColorScheme.secondary),
     bottomAppBarColor: DeepBlueColorScheme.white,
     dividerColor: DeepBlueColorScheme.secondary,
@@ -27,7 +32,7 @@ class JhontanMariaTheme {
         primaryVariant: DeepBlueColorScheme.primaryLight,
         secondary: DeepBlueColorScheme.secondary,
         secondaryVariant: DeepBlueColorScheme.secondary,
-        surface: DeepBlueColorScheme.white,
+        surface: DeepBlueColorScheme.primary2,
         background: DeepBlueColorScheme.white,
         error: Colors.red,
         onPrimary: DeepBlueColorScheme.primary,

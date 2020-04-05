@@ -5,6 +5,7 @@ class DeepBlueColorScheme {
   static const Color secondary = Color(0XFF113D52);
   static const Color primary = Color(0XFF199AE3);
   static const Color primaryLight = Color(0XFFC1D5DF);
+  static const Color primary2 = Color(0XFFABE0FF);
 
   static const MaterialColor primarySwatch = const MaterialColor(
     0XFF39AFD1,
