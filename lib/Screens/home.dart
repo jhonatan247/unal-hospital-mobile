@@ -40,7 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          TopDecorator(),
+          TopDecorator(
+            text: user.name,
+          ),
           Container(
             padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
             child: NormalText(

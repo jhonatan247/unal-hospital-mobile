@@ -11,6 +11,7 @@ class JhontanMariaTheme {
         color: DeepBlueColorScheme.secondary,
         fontSize: 26,
         fontWeight: FontWeight.bold,
+        fontFamily: 'Nunito',
       ),
       display1: TextStyle(
         color: DeepBlueColorScheme.secondary,
