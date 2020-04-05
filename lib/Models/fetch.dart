@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:me_cuido/Models/experiment.dart';
+import 'package:me_cuido/Models/results.dart';
 
 // Get questions from back
 Future<ExperimentList> fetchQuestions() async {
@@ -12,4 +13,18 @@ Future<ExperimentList> fetchQuestions() async {
   } else {
     throw Exception('Failed to load Json');
   }
+}
+
+// Send questions to back 
+
+Future<http.Response> sendAnswers(Results answers) {
+  Map<String, dynamic> rawBody = answers.toJson();
+  var encodedBody = jsonEncode(rawBody);
+  return http.post(
+    'https://us-central1-poc-test-unal-hospital.cloudfunctions.net/answers/addAnswer',
+    headers: <String, String>{
+      'Content-Type': 'text/plain',
+    },
+    body: encodedBody,
+  );
 }

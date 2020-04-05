@@ -22,18 +22,6 @@ class _MultipleCheckWidgetState extends State<MultiCheckWidget> {
   _MultipleCheckWidgetState(this.options);
 
   Widget buildCheckBox(BuildContext context, int index) {
-    if (widget.optionsMarked != null) {
-      for (final opt in widget.optionsMarked) {
-        print("opt.id");
-        print(opt.id);
-        print("opt.id");
-        if (widget.options[index].id == opt.id) {
-          widget.options[index] = opt;
-        }
-        break;
-      }
-    }
-
     return Checkbox(
       activeColor: Theme.of(context).primaryColor,
       hoverColor: Theme.of(context).primaryColor,
@@ -48,10 +36,10 @@ class _MultipleCheckWidgetState extends State<MultiCheckWidget> {
 
   void changeItemSelectedStatus(int index, bool selectedStatus) {
     setState(() {
-      options[index].isSelected = selectedStatus;
+      widget.options[index].isSelected = selectedStatus;
       List<SelectorOption> optionsMarked = [];
 
-      options.forEach((opt) => {
+      widget.options.forEach((opt) => {
             if (opt.isSelected) {optionsMarked.add(opt)}
           });
       widget.onChanged(optionsMarked);

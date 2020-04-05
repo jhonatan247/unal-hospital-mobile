@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:me_cuido/Screens/home.dart';
 import 'package:me_cuido/Screens/splash.dart';
+import 'package:me_cuido/Screens/triage_finished.dart';
 import 'package:me_cuido/Screens/welcome.dart';
 import './Theme/Theme.dart';
 
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     HomeScreen.routeName: (context) => HomeScreen(),
     WelcomeScreen.routeName: (context) => WelcomeScreen(),
+    TriageFinished.routeName: (context) => TriageFinished(),
   };
 
   @override

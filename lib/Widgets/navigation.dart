@@ -23,11 +23,7 @@ class NavigationWidget extends StatelessWidget {
   }
 
   void onNextTab() {
-    if (currentIndex + 1 == count) {
-      onChange(currentIndex);
-    } else {
-      onChange(currentIndex + 1);
-    }
+    onChange(currentIndex + 1);
   }
 
   @override
