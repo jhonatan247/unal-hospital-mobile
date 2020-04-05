@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DeepBlueColorScheme {
   static const Color white = Color(0XFFFFFFFF);
   static const Color secondary = Color(0XFF113D52);
-  static const Color primary = Color(0XFF39AFD1);
+  static const Color primary = Color(0XFF199AE3);
   static const Color primaryLight = Color(0XFFC1D5DF);
 
   static const MaterialColor primarySwatch = const MaterialColor(

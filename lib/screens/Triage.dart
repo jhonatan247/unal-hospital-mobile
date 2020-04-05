@@ -3,6 +3,7 @@ import 'package:me_cuido/Models/experiment.dart';
 import 'package:me_cuido/Models/fetch.dart';
 import 'package:me_cuido/Models/results.dart';
 import 'package:me_cuido/Models/selector_option.dart';
+import 'package:me_cuido/Screens/triage_finished.dart';
 import 'package:me_cuido/Widgets/multi_check.dart';
 import 'package:me_cuido/Widgets/multi_radio.dart';
 import 'package:me_cuido/Widgets/navigation.dart';
@@ -23,6 +24,7 @@ class Triage extends StatefulWidget {
 class _TriageState extends State<Triage> {
   Future<ExperimentList> futureQuestions;
   ExperimentList questions;
+  bool loading = false;
 
   Widget currentOptions;
   List<List<SelectorOption>> cashedAnswers = [];
@@ -60,7 +62,15 @@ class _TriageState extends State<Triage> {
     });
   }
 
-  void onQuestionChange(int questionIndex) {
+  void onQuestionChange(int questionIndex) async {
+    if (questionIndex == questions.experiments.length) {
+      setState(() {
+        loading = true;
+      });
+      saveAnswers();
+      return;
+    }
+
     Widget newOptions = buildOptionsListFromExperimentData(
       questions.experiments[questionIndex].options,
       questions.experiments[questionIndex].type,
@@ -72,6 +82,21 @@ class _TriageState extends State<Triage> {
       currentOptions = newOptions;
     });
   }
+
+  void saveAnswers() async {
+    var response = await sendAnswers(results);
+      if (response.statusCode == 200) {
+        Navigator.of(context).pushReplacementNamed(TriageFinished.routeName);
+      } else {
+        throw Exception('Failed to load Json');
+      }
+      setState(() {
+        loading = false;
+      });
+      return;
+  }
+
+  
 
   Widget buildOptionsListFromExperimentData(
     List<Map<String, Object>> experimentData,
@@ -112,14 +137,9 @@ class _TriageState extends State<Triage> {
       buildedOptions.add(option);
     });
 
-    print("primera generación");
-    print(currentQuestion);
-
     return MultiRadioWidget(
       buildedOptions,
       (SelectorOption option) {
-        print("Onchange");
-        print(currentQuestion);
         cashedAnswers[currentQuestion] = [option];
         List<Map<String, String>> optionsList = [
           getAnswersFromRadialBox(option)
@@ -128,7 +148,6 @@ class _TriageState extends State<Triage> {
           results.answers[currentQuestion]['options'] = optionsList;
         });
       },
-      optionMarked: cashedAnswers.isNotEmpty ? cashedAnswers[index][0] : null,
     );
   }
 
@@ -153,16 +172,9 @@ class _TriageState extends State<Triage> {
       );
       buildedOptions.add(option);
     });
-
-    print("primera generación");
-    print(currentQuestion);
-    print(index);
-
     return MultiCheckWidget(
       buildedOptions,
       (List<SelectorOption> options) {
-        print("Onchange");
-        print(currentQuestion);
         List<Map<String, String>> optionsList = getAnswersFromCheckbox(options);
         print(optionsList);
         setState(() {
@@ -170,9 +182,6 @@ class _TriageState extends State<Triage> {
           results.answers[currentQuestion]['options'] = optionsList;
         });
       },
-      optionsMarked: cashedAnswers.isNotEmpty && cashedAnswers[index].isNotEmpty
-          ? cashedAnswers[index]
-          : null,
     );
   }
 
@@ -191,7 +200,9 @@ class _TriageState extends State<Triage> {
 
   @override
   Widget build(BuildContext context) {
-    if (questions != null) {
+    if (questions == null || loading) {
+      return CircularProgressIndicator();
+    } else {
       String textContent =
           questions.experiments[currentQuestion].label['content'];
       double marginText = 20;
@@ -238,8 +249,6 @@ class _TriageState extends State<Triage> {
               ),
             ),
           ));
-    } else {
-      return CircularProgressIndicator();
     }
   }
 }

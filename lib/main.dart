@@ -4,6 +4,7 @@ import 'package:me_cuido/Bloc/user.dart';
 import 'package:me_cuido/Screens/home.dart';
 import 'package:me_cuido/Screens/root.dart';
 import 'package:me_cuido/Screens/splash.dart';
+import 'package:me_cuido/Screens/triage_finished.dart';
 import 'package:me_cuido/Screens/welcome.dart';
 import './Theme/Theme.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     HomeScreen.routeName: (context) => HomeScreen(),
     WelcomeScreen.routeName: (context) => WelcomeScreen(),
     RootScreen.routeName: (context) => RootScreen(),
+    TriageFinished.routeName: (context) => TriageFinished(),
   };
 
   @override

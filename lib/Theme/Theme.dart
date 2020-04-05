@@ -13,6 +13,7 @@ class JhontanMariaTheme {
     primaryColorLight: DeepBlueColorScheme.secondary,
     cardTheme: CardTheme(color: DeepBlueColorScheme.secondary),
     textTheme: TextTheme(
+      
       display1: TextStyle(
         color: DeepBlueColorScheme.secondary,
         fontSize: 22,

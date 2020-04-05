@@ -6,4 +6,12 @@ class Results {
     this.userId,
     this.answers,
   );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'userId': userId,
+      'answers': answers,
+    };
+    
+  }
 }
