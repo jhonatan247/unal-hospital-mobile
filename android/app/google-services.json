@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1036524590348",
+    "firebase_url": "https://covid-hospital.firebaseio.com",
+    "project_id": "covid-hospital",
+    "storage_bucket": "covid-hospital.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036524590348:android:4128716299ebc9ed8a6529",
+        "android_client_info": {
+          "package_name": "co.edu.unal.me_cuido"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036524590348-ltee5up51oq7om2ivoog7hftt8ro5r3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXq-hr6XyGDBnXc4uD0v9A_-QsOz7Qf8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036524590348-ltee5up51oq7om2ivoog7hftt8ro5r3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

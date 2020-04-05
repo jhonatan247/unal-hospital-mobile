@@ -209,7 +209,7 @@ class _TriageState extends State<Triage> {
                 : false,
           ),
           body: Container(
-            padding: EdgeInsets.fromLTRB(20, 25, 20, 25),
+            padding: EdgeInsets.fromLTRB(20, 25, 20, 0),
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[

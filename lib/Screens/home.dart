@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:me_cuido/Assets/images.dart';
+import 'package:me_cuido/Bloc/user.dart';
+import 'package:me_cuido/Screens/root.dart';
 import 'package:me_cuido/Widgets/playground.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,8 +13,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  UserBloc userBloc;
   @override
   Widget build(BuildContext context) {
+    userBloc = BlocProvider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: SvgPicture.asset(
@@ -19,11 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 22,
         ),
         backgroundColor: Theme.of(context).backgroundColor,
-        textTheme: TextTheme(
-            title: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 18,
-                fontWeight: FontWeight.bold)),
         actions: <Widget>[
           FlatButton(
               child: Icon(
@@ -33,7 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               textColor: Theme.of(context).primaryColorDark,
               onPressed: () {
-                print("menu icon was clicked");
+                userBloc.signOut();
+                Navigator.of(context)
+                    .pushReplacementNamed(RootScreen.routeName);
               })
         ],
       ),

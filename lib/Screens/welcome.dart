@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:me_cuido/Assets/images.dart';
-import 'package:me_cuido/Screens/home.dart';
+import 'package:me_cuido/Screens/root.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String routeName = "welcome";
@@ -39,7 +38,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
           ),
           onTap: () {
-            Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+            Navigator.of(context).pushReplacementNamed(RootScreen.routeName);
           },
         ),
       ),

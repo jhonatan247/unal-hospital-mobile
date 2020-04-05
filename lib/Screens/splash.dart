@@ -39,7 +39,8 @@ class _SplashScreenState extends State<SplashScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: Container(
+        bottomNavigationBar: Container(color: Theme.of(context).primaryColor),
+        bottomSheet: Container(
           color: Theme.of(context).primaryColor,
           height: MediaQuery.of(context).size.height * 0.15,
           child: Row(
