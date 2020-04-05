@@ -10,7 +10,7 @@ class GenericRaisedButton extends StatelessWidget {
   final String content;
 
   GenericRaisedButton(
-    this.content, 
+    this.content,
     this.onPressed, {
     this.enabled = true,
     this.sufixIcon,
@@ -21,7 +21,8 @@ class GenericRaisedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> buttonContent = [];
-    final iconColor = JhontanMariaTheme.getGenericRaisedButtonTextColor(solid, enabled);
+    final iconColor =
+        JhontanMariaTheme.getGenericRaisedButtonTextColor(solid, enabled);
     if (prefixIcon != null)
       buttonContent.add(Icon(
         prefixIcon,
@@ -48,7 +49,7 @@ class GenericRaisedButton extends StatelessWidget {
       disabledColor: Theme.of(context).colorScheme.primaryVariant,
       child: Row(
         children: buttonContent,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
       ),
     );
   }

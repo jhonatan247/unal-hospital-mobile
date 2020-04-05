@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:me_cuido/Assets/images.dart';
 import 'package:me_cuido/Widgets/playground.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +14,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MeCuido"),
+        title: SvgPicture.asset(
+          Images.APP_LOGO,
+          height: 22,
+        ),
         backgroundColor: Theme.of(context).backgroundColor,
         textTheme: TextTheme(
             title: TextStyle(
@@ -21,15 +26,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold)),
         actions: <Widget>[
           FlatButton(
-              child: Row(
-                children: <Widget>[
-                  Text("Jhonatan"),
-                  Icon(Icons.person),
-                ],
+              child: Icon(
+                Icons.menu,
+                size: 30,
+                color: Theme.of(context).primaryColor,
               ),
               textColor: Theme.of(context).primaryColorDark,
               onPressed: () {
-                print("user icon was clicked");
+                print("menu icon was clicked");
               })
         ],
       ),

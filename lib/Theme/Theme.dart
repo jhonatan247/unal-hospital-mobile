@@ -119,7 +119,7 @@ class JhontanMariaTheme {
   static TextStyle getGenericRaisedButtonTextStyle(bool solid, bool enabled) {
     return TextStyle(
       color: getGenericRaisedButtonTextColor(solid, enabled),
-      fontSize: 22,
+      fontSize: 18,
     );
   }
 }

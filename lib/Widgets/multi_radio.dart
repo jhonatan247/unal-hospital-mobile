@@ -4,45 +4,60 @@ import 'package:me_cuido/Models/selector_option.dart';
 class MultiRadioWidget extends StatefulWidget {
   final List<SelectorOption> options;
   final void Function(SelectorOption) onChanged;
+  final SelectorOption optionMarked;
 
-  MultiRadioWidget({this.options, this.onChanged});
+  MultiRadioWidget(
+    this.options,
+    this.onChanged, {
+    this.optionMarked,
+  });
 
   @override
-  _MultiRadioWidgetState createState() =>
-      _MultiRadioWidgetState(options: this.options, onChanged: this.onChanged);
+  _MultiRadioWidgetState createState() => _MultiRadioWidgetState();
 }
 
 class _MultiRadioWidgetState extends State<MultiRadioWidget> {
-  final List<SelectorOption> options;
-  final void Function(SelectorOption) onChanged;
   SelectorOption optionMarked;
 
-  _MultiRadioWidgetState({this.options, this.onChanged});
+  _MultiRadioWidgetState();
+
+  @override
+  void initState() {
+    if (widget.optionMarked != null) {
+      setState(() {
+        optionMarked = widget.optionMarked;
+      });
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (options.length == 0) return Container();
-
+    if (widget.options.length == 0) return Container();
     return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: this.options.length,
+      itemCount: widget.options.length,
       itemBuilder: (BuildContext builderContext, int index) {
+        var value = widget.options[index];
+        if (widget.optionMarked != null &&
+            widget.options[index].id == widget.optionMarked.id) {
+          value = widget.optionMarked;
+        }
         return Container(
           child: Row(
             children: <Widget>[
-              SizedBox(
-                width: 30,
-              ),
               Radio<SelectorOption>(
-                activeColor: Color(0XFF113D52),
-                value: options.elementAt(index),
+                activeColor: Theme.of(context).primaryColor,
+                hoverColor: Theme.of(context).primaryColor,
+                focusColor: Theme.of(context).primaryColor,
+                value: value,
                 groupValue: optionMarked,
                 onChanged: (SelectorOption value) {
                   setState(() {
                     optionMarked = value;
-                    onChanged(optionMarked);
                   });
+                  widget.onChanged(optionMarked);
                 },
               ),
               SizedBox(
@@ -50,7 +65,7 @@ class _MultiRadioWidgetState extends State<MultiRadioWidget> {
               ),
               Flexible(
                 child: Text(
-                  this.options.elementAt(index).name,
+                  widget.options.elementAt(index).name,
                   overflow: TextOverflow.visible,
                   style: TextStyle(
                       color: Theme.of(context).primaryColorDark, fontSize: 18),
