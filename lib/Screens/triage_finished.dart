@@ -69,7 +69,9 @@ class _TriageFinishedState extends State<TriageFinished> {
                 ),
                 GenericRaisedButton(
                   "volver al inicio",
-                  null,
+                  () {
+                    Navigator.of(context).pop();
+                  },
                   prefixIcon: Icons.keyboard_arrow_left,
                 )
               ],
