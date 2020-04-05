@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:me_cuido/Assets/images.dart';
+import 'package:me_cuido/Widgets/normal_text.dart';
+import 'package:me_cuido/Widgets/title_text.dart';
 
 class TriageFinished extends StatefulWidget {
   static String routeName = "triage_finished";
+  
   @override
   _TriageFinishedState createState() => _TriageFinishedState();
 }
@@ -43,13 +46,13 @@ class _TriageFinishedState extends State<TriageFinished> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
+              TitleText(
                 '¡Gracias!',
-                style: Theme.of(context).textTheme.display1,
+                align: TextAlign.center,
               ),
-              Text(
+              NormalText(
                 'Esta información es muy valiosa para monitorear tu estado de salud y el de tu sector.\n\nEntre todos podemos cuidarnos para detener la propagación de Coronavirus',
-                style: Theme.of(context).textTheme.display1,
+                align: TextAlign.center,
               )
             ],
           ),

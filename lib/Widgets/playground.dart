@@ -42,40 +42,39 @@ class PlayGround extends StatelessWidget {
         type: ExperimentInputTypes.RadialBox,
       ),
       Experiment(
-        id: "q_ID_2",
-        title: '¿Cómo te sentirás mañana?',
-        label: {
-          'type': 'text',
-          'content': 'Test',
-        },
-        options: [
-          {
-            'id': 'aa',
-            'type': 'radial-box',
-            'label': {
-              'type': 'text',
-              'content': 'a',
-            },
+          id: "q_ID_2",
+          title: '¿Cómo te sentirás mañana?',
+          label: {
+            'type': 'text',
+            'content': 'Test',
           },
-          {
-            'id': 'ee',
-            'type': 'radial-box',
-            'label': {
-              'type': 'text',
-              'content': 'b',
+          options: [
+            {
+              'id': 'aa',
+              'type': 'radial-box',
+              'label': {
+                'type': 'text',
+                'content': 'a',
+              },
             },
-          },
-          {
-            'id': 'ii',
-            'type': 'radial-box',
-            'label': {
-              'type': 'text',
-              'content': 'c',
+            {
+              'id': 'ee',
+              'type': 'radial-box',
+              'label': {
+                'type': 'text',
+                'content': 'b',
+              },
             },
-          },
-        ],
-        type: ExperimentInputTypes.Checkbox
-      ),
+            {
+              'id': 'ii',
+              'type': 'radial-box',
+              'label': {
+                'type': 'text',
+                'content': 'c',
+              },
+            },
+          ],
+          type: ExperimentInputTypes.Checkbox),
       Experiment(
         id: "q_ID_3",
         title: '¿Cómo te sentirás pasadomañana?',
@@ -97,7 +96,6 @@ class PlayGround extends StatelessWidget {
       ),
     ];
 
-    return Triage(
-        () => print("returning home"), () => print("finished"));
+    return TriageScreen();
   }
 }

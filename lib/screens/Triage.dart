@@ -8,20 +8,14 @@ import 'package:me_cuido/Widgets/multi_check.dart';
 import 'package:me_cuido/Widgets/multi_radio.dart';
 import 'package:me_cuido/Widgets/navigation.dart';
 
-class Triage extends StatefulWidget {
-  final Function returnToHome;
-  final Function finishTriage;
-
-  Triage(
-    this.returnToHome,
-    this.finishTriage,
-  );
+class TriageScreen extends StatefulWidget {
+  static String routeName = "triage";
 
   @override
   _TriageState createState() => _TriageState();
 }
 
-class _TriageState extends State<Triage> {
+class _TriageState extends State<TriageScreen> {
   Future<ExperimentList> futureQuestions;
   ExperimentList questions;
   bool loading = false;
@@ -85,18 +79,16 @@ class _TriageState extends State<Triage> {
 
   void saveAnswers() async {
     var response = await sendAnswers(results);
-      if (response.statusCode == 200) {
-        Navigator.of(context).pushReplacementNamed(TriageFinished.routeName);
-      } else {
-        throw Exception('Failed to load Json');
-      }
-      setState(() {
-        loading = false;
-      });
-      return;
+    if (response.statusCode == 200) {
+      Navigator.of(context).pushReplacementNamed(TriageFinished.routeName);
+    } else {
+      throw Exception('Failed to load Json');
+    }
+    setState(() {
+      loading = false;
+    });
+    return;
   }
-
-  
 
   Widget buildOptionsListFromExperimentData(
     List<Map<String, Object>> experimentData,
