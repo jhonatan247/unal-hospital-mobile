@@ -42,13 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
               })
         ],
       ),
-      //body: Center(child: PlayGround()),
       body: Container(
         padding: EdgeInsets.only(bottom: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            TopDecorator(),
+            TopDecorator(text: "User Test",),
             Container(
               padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
               child: NormalText(

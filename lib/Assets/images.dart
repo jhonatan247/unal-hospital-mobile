@@ -11,4 +11,5 @@ class Images {
   static const UNAL_LOGO = _FOLDER_PATH + "unal_logo" + _PNG_EXT;
   static const HUN_LOGO = _FOLDER_PATH + "hun_logo" + _PNG_EXT;
   static const TOP_DECORATOR_A = _FOLDER_PATH + "top_decorator_a" + _PNG_EXT;
+  static const TOP_DECORATOR_B = _FOLDER_PATH + "top_decorator_b" + _PNG_EXT;
 }
