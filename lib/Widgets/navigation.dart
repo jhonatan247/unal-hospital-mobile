@@ -15,11 +15,7 @@ class NavigationWidget extends StatelessWidget {
   });
 
   void onPreviousTab() {
-    if (currentIndex == 0) {
-      onChange(currentIndex);
-    } else {
-      onChange(currentIndex - 1);
-    }
+    onChange(currentIndex - 1);
   }
 
   void onNextTab() {

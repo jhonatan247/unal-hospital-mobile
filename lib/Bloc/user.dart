@@ -1,21 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:me_cuido/Models/user.dart';
 import 'package:me_cuido/Repository/auth.dart';
 
 class UserBloc implements Bloc {
-  final _auth_repository = AuthRespository();
+  final _authRepository = AuthRespository();
+  UserModel _currentUser;
 
   Stream<FirebaseUser> _streamFirebaseAuth =
       FirebaseAuth.instance.onAuthStateChanged;
 
   Stream<FirebaseUser> get authStatus => _streamFirebaseAuth;
 
+  set currentUser(UserModel current) => _currentUser = current;
+  UserModel get currentUser => _currentUser;
+
   Future<FirebaseUser> signIn() {
-    return _auth_repository.signInFirebase();
+    return _authRepository.signInFirebase();
   }
 
   signOut() {
-    _auth_repository.signOut();
+    _authRepository.signOut();
   }
 
   @override

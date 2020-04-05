@@ -4,6 +4,7 @@ import 'package:me_cuido/Models/fetch.dart';
 import 'package:me_cuido/Models/results.dart';
 import 'package:me_cuido/Models/selector_option.dart';
 import 'package:me_cuido/Screens/triage_finished.dart';
+import 'package:me_cuido/Widgets/app_bar.dart';
 import 'package:me_cuido/Widgets/multi_check.dart';
 import 'package:me_cuido/Widgets/multi_radio.dart';
 import 'package:me_cuido/Widgets/navigation.dart';
@@ -57,11 +58,16 @@ class _TriageState extends State<TriageScreen> {
   }
 
   void onQuestionChange(int questionIndex) async {
+    print(questionIndex);
     if (questionIndex == questions.experiments.length) {
       setState(() {
         loading = true;
       });
       saveAnswers();
+      return;
+    }
+    if (questionIndex == -1) {
+      Navigator.of(context).pop();
       return;
     }
 
@@ -109,10 +115,12 @@ class _TriageState extends State<TriageScreen> {
         );
         break;
       case ExperimentInputTypes.Text: // Input text.
-        break;
+        return Container();
       default:
       // error en la generación de la pregunta? cómo manejaríamos errores acá?
     }
+
+    return Container();
   }
 
   MultiRadioWidget buildRadialBoxOptionListFromJsonData(
@@ -192,55 +200,74 @@ class _TriageState extends State<TriageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: buildAppBar(context, true),
+        backgroundColor: Theme.of(context).backgroundColor,
+        bottomNavigationBar: buildBottomNavigation(),
+        body: buildBody());
+  }
+
+  Widget buildBottomNavigation() {
     if (questions == null || loading) {
-      return CircularProgressIndicator();
+      return Container(
+        height: 0,
+      );
     } else {
-      String textContent =
-          questions.experiments[currentQuestion].label['content'];
-      double marginText = 20;
-      if (textContent == null || textContent.isEmpty) {
-        marginText = 0;
-      }
-      return Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
-          bottomNavigationBar: NavigationWidget(
-            questions.experiments.length,
-            currentQuestion,
-            onQuestionChange,
-            canContinue: results.answers[currentQuestion]['options'] != null
-                ? true
-                : false,
-          ),
-          body: Container(
-            padding: EdgeInsets.fromLTRB(20, 25, 20, 0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    questions.experiments[currentQuestion].title,
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColorDark),
-                  ),
-                  SizedBox(
-                    height: marginText,
-                  ),
-                  Text(
-                    textContent,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).primaryColorDark),
-                  ),
-                  SizedBox(
-                    height: marginText,
-                  ),
-                  currentOptions,
-                ],
-              ),
-            ),
-          ));
+      return NavigationWidget(
+        questions.experiments.length,
+        currentQuestion,
+        onQuestionChange,
+        canContinue:
+            results.answers[currentQuestion]['options'] != null ? true : false,
+      );
     }
+  }
+
+  Widget buildBody() {
+    if (questions == null || loading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      return buildTriage();
+    }
+  }
+
+  Widget buildTriage() {
+    String textContent =
+        questions.experiments[currentQuestion].label['content'];
+    double marginText = 20;
+    if (textContent == null || textContent.isEmpty) {
+      marginText = 0;
+    }
+    return Container(
+      padding: EdgeInsets.fromLTRB(20, 25, 20, 0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Text(
+              questions.experiments[currentQuestion].title,
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColorDark),
+            ),
+            SizedBox(
+              height: marginText,
+            ),
+            Text(
+              textContent,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 18, color: Theme.of(context).primaryColorDark),
+            ),
+            SizedBox(
+              height: marginText,
+            ),
+            currentOptions,
+          ],
+        ),
+      ),
+    );
   }
 }

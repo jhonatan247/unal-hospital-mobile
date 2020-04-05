@@ -4,8 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:me_cuido/Assets/images.dart';
 import 'package:me_cuido/Bloc/user.dart';
+import 'package:me_cuido/Models/user.dart';
 import 'package:me_cuido/Repository/auth.dart';
 import 'package:me_cuido/Screens/home.dart';
+import 'package:me_cuido/Widgets/app_bar.dart';
 import 'package:me_cuido/Widgets/generic_raised_button.dart';
 
 class RootScreen extends StatefulWidget {
@@ -33,6 +35,10 @@ class _RootState extends State<RootScreen> {
         if (!snapshot.hasData || snapshot.hasError) {
           return signInGoogleUI();
         } else {
+          userBloc.currentUser = new UserModel(
+              name: snapshot.data.displayName,
+              email: snapshot.data.email,
+              photoUrl: snapshot.data.photoUrl);
           return HomeScreen();
         }
       },
@@ -41,18 +47,7 @@ class _RootState extends State<RootScreen> {
 
   Widget signInGoogleUI() {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SvgPicture.asset(
-              Images.APP_LOGO,
-              height: 22,
-            )
-          ],
-        ),
-        backgroundColor: Theme.of(context).backgroundColor,
-      ),
+      appBar: buildAppBar(context, false),
       backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
